@@ -121,6 +121,30 @@ void SNLineEdit::setInserterSe(QString Se)
     update();
 }
 
+bool SNLineEdit::passwordMode() const
+{
+    return m_password_mode;
+}
+
+void SNLineEdit::setPasswordMode(bool value)
+{
+    m_password_mode = value;
+    emit passwordModeChanged(value);
+    update();
+}
+
+QColor SNLineEdit::textColor() const
+{
+    return m_text_color;
+}
+
+void SNLineEdit::setTextColor(QColor color)
+{
+    m_text_color = color;
+    emit textColorChanged(color);
+    update();
+}
+
 
 void SNLineEdit::keyPressEvent(QKeyEvent *event)
 {
@@ -168,7 +192,15 @@ void SNLineEdit::paintEvent(QPaintEvent *event)
 
         m_font.setBold(false);
 
-        m_drawString = m_value;
+        if(!m_password_mode)
+            m_drawString = m_value;
+        else {
+            m_drawString.clear();
+            for(int i = 0;i<m_value.length();i++)
+            {
+                m_drawString += "*";
+            }
+        }
 
 //        bool overflow = metrics.width(m_drawString) > width();
         bool overflow = metrics.width(m_drawString) > (width()-metrics.width(m_Inserter_Se));
@@ -181,17 +213,26 @@ void SNLineEdit::paintEvent(QPaintEvent *event)
         }
 
         painter.setFont(m_font);
-        painter.setPen(QColor(0,0,0));
+        painter.setPen(m_text_color);
 //        painter.drawText(rect(),m_drawString);
         painter.drawText(0,0,width()-metrics.width(m_Inserter_Se),height(),0,m_drawString);
     }
 
     if(!m_focus)
     {
-        m_drawString = m_value;
+        if(!m_password_mode)
+            m_drawString = m_value;
+        else{
+            m_drawString.clear();
+            for(int i = 0;i<m_value.length();i++)
+            {
+                m_drawString += "*";
+            }
+        }
+
         m_font.setBold(false);
         painter.setFont(m_font);
-        painter.setPen(QColor(0,0,0));
+        painter.setPen(m_text_color);
         painter.drawText(0,0,width()-metrics.width(m_Inserter_Se),height(),0,m_drawString);
     }
 }
