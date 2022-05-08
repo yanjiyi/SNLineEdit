@@ -8,11 +8,8 @@
 #include <QFont>
 #include <QPainter>
 #include <QFontMetrics>
-#include <QtDesigner/QtDesigner>
-#include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
-
-class QDESIGNER_WIDGET_EXPORT SNLineEdit : public QWidget
+class SNLineEdit : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(QString Inserter READ Inserter WRITE setInserter NOTIFY InserterChanged) //插入符-属性
