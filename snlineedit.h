@@ -9,7 +9,9 @@
 #include <QPainter>
 #include <QFontMetrics>
 
-class SNLineEdit : public QWidget
+#include <QtUiPlugin/QDesignerExportWidget>
+
+class QDESIGNER_WIDGET_EXPORT SNLineEdit : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(QString Inserter READ Inserter WRITE setInserter NOTIFY InserterChanged) //插入符-属性
