@@ -24,6 +24,7 @@ class QDESIGNER_WIDGET_EXPORT SNLineEdit : public QWidget
     Q_PROPERTY(bool passwordMode READ passwordMode WRITE setPasswordMode NOTIFY passwordModeChanged)
     Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor NOTIFY textColorChanged)
     Q_PROPERTY(QString placeHolder READ placeHolder WRITE setPlaceHolder NOTIFY placeHolderChanged)
+    Q_PROPERTY(int placeHolderAlpha READ placeHolderAlpha WRITE setPlaceHolderAlpha NOTIFY placeHolderAlphaChanged)
 public:
     SNLineEdit(QWidget *parent = 0);
     SNLineEdit(const QString & placeHolder,QWidget * parent = 0);
@@ -59,6 +60,9 @@ public:
     QString placeHolder() const;
     void setPlaceHolder(QString placeHolder);
 
+    int placeHolderAlpha() const;
+    void setPlaceHolderAlpha(int alpha);
+
 signals:
     void InserterChanged(QString value); //插入符改变信号
     void ValueChanged(QString value); //用户输入改变信号
@@ -70,6 +74,7 @@ signals:
     void passwordModeChanged(bool value);
     void textColorChanged(QColor color);
     void placeHolderChanged(QString placeHolder);
+    void placeHolderAlphaChanged(int alpha);
 
 protected:
     QString m_placeHolder;
@@ -85,6 +90,7 @@ protected:
     bool m_inserter_shouldbe_add = false;
     bool m_focus = false;
     bool m_password_mode = false;
+    int placeHolder_alpha = 100;
     // QWidget interface
 protected:
     void keyPressEvent(QKeyEvent *event) override;

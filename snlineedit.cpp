@@ -157,6 +157,18 @@ void SNLineEdit::setPlaceHolder(QString placeHolder)
     update();
 }
 
+int SNLineEdit::placeHolderAlpha() const
+{
+    return placeHolder_alpha;
+}
+
+void SNLineEdit::setPlaceHolderAlpha(int alpha)
+{
+    placeHolder_alpha = alpha;
+    emit placeHolderAlphaChanged(alpha);
+    update();
+}
+
 
 void SNLineEdit::keyPressEvent(QKeyEvent *event)
 {
@@ -180,7 +192,7 @@ void SNLineEdit::paintEvent(QPaintEvent *event)
     if(m_value.isEmpty()||m_value.length()==0||m_value=="")
     {
         QColor placeHolderColor = m_text_color;
-        placeHolderColor.setAlpha(100);
+        placeHolderColor.setAlpha(placeHolder_alpha);
         painter.setPen(placeHolderColor);
         painter.setFont(m_font);
         painter.drawText(rect(),m_placeHolder);
