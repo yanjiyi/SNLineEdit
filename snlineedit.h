@@ -23,6 +23,7 @@ class QDESIGNER_WIDGET_EXPORT SNLineEdit : public QWidget
     Q_PROPERTY(QColor InserterColor READ InserterColor WRITE setInserterColor NOTIFY InserterColorChanged)
     Q_PROPERTY(bool passwordMode READ passwordMode WRITE setPasswordMode NOTIFY passwordModeChanged)
     Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor NOTIFY textColorChanged)
+    Q_PROPERTY(QString placeHolder READ placeHolder WRITE setPlaceHolder NOTIFY placeHolderChanged)
 public:
     SNLineEdit(QWidget *parent = 0);
     SNLineEdit(const QString & placeHolder,QWidget * parent = 0);
@@ -55,6 +56,9 @@ public:
     QColor textColor() const;
     void setTextColor(QColor color);
 
+    QString placeHolder() const;
+    void setPlaceHolder(QString placeHolder);
+
 signals:
     void InserterChanged(QString value); //插入符改变信号
     void ValueChanged(QString value); //用户输入改变信号
@@ -65,6 +69,7 @@ signals:
     void InserterSeChanged(QString Se);
     void passwordModeChanged(bool value);
     void textColorChanged(QColor color);
+    void placeHolderChanged(QString placeHolder);
 
 protected:
     QString m_placeHolder;
